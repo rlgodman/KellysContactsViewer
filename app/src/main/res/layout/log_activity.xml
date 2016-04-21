@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="User Viewing Logs"
+        android:id="@+id/titleView"
+        android:textSize="30dip"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="454dp"
+        android:id="@+id/logView"
+        android:layout_gravity="bottom" />
+</LinearLayout>
