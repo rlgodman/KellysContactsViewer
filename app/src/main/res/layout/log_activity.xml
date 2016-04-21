@@ -11,11 +11,12 @@
         android:id="@+id/titleView"
         android:textSize="30dip"
         android:gravity="center"
+        android:scrollbars="vertical"
         />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="454dp"
+        android:layout_height="match_parent"
         android:id="@+id/logView"
         android:layout_gravity="bottom" />
 </LinearLayout>

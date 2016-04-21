@@ -57,7 +57,8 @@ public class MainActivity extends Activity {
     private String nameToPass;
     private JSONArray contactsJA;
     private ArrayAdapter<String> arrayAdapter;
-    int toReload=0;
+    private int toReload=0;
+    private int forLog;
     String passedEmpID;
 
     //override onCreate method
@@ -258,6 +259,7 @@ public class MainActivity extends Activity {
         } catch (JSONException e){
             e.printStackTrace();
         }
+        forLog = logID;
         //call specific function depending on which option the user chooses, passing the required variable
         if (item.getTitle()=="Call Mobile") {
            callMobile(mobile);
@@ -285,7 +287,11 @@ public class MainActivity extends Activity {
     }
     //opens Phone application with selected contact mobile number input
     private void callMobile (String mobile){
-
+        //create log entry for the contact, unless no Contact ID was found
+        if (forLog != 88888){
+            createLogEntry();
+        }
+        //set up Mobile Number in correct format
         String phone = "tel:"+mobile;
 
         Log.d("PASSED Mobile", phone);
@@ -297,7 +303,11 @@ public class MainActivity extends Activity {
     }
     //opens Phone application with selected contact home number input
     private void callHome (String home){
-
+        //create log entry for the contact, unless no Contact ID was found
+        if (forLog != 88888){
+            createLogEntry();
+        }
+        //set up Hom Number in correct format
         String phone = "tel:"+home;
 
         Log.d("PASSED Home", phone);
@@ -309,7 +319,10 @@ public class MainActivity extends Activity {
     }
     //opens email application with contact email address input in To: field
     private void sendEmail (String email){
-
+        //create log entry for the contact, unless no Contact ID was found
+        if (forLog != 88888){
+            createLogEntry();
+        }
         //create emailIntent and fills in address with email variable
         Intent emailIntent = new Intent (Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
@@ -325,15 +338,16 @@ public class MainActivity extends Activity {
     }
     //opens SMS application with selected contact mobile number input
     private void sendSMS (String mobile){
-
-        String phone = ""+mobile;
-
-        Log.d("PASSED Mobile", phone);
+        //create log entry for the contact, unless no Contact ID was found
+        if (forLog != 88888){
+            createLogEntry();
+        }
+        Log.d("PASSED Mobile", mobile);
         //create SMSintent and fill to field with phone variable
         Intent SMSIntent = new Intent(Intent.ACTION_SENDTO);
         SMSIntent.addCategory(Intent.CATEGORY_DEFAULT);
         SMSIntent.setType("vnd.android-dir/mms-sms");
-        SMSIntent.setData(Uri.parse("sms:" + phone));
+        SMSIntent.setData(Uri.parse("sms:" + mobile));
         startActivity(SMSIntent);
     }
     private int getTrueID (String name){
@@ -359,6 +373,17 @@ public class MainActivity extends Activity {
         }
         int toreturn = Integer.parseInt(uid);
         return toreturn;
+    }
+    private void createLogEntry(){
+        //add LOG to contactlog table
+        try {
+            String logString = new logToDB().execute().get();
+        } catch (InterruptedException e) {
+            Toast.makeText(MainActivity.this, "No Connection, check database status", Toast.LENGTH_SHORT);
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
     //creates url connection and retrieves json response as string
     private class RetrieveTask extends AsyncTask<Void,Void,String>{
@@ -533,7 +558,7 @@ public class MainActivity extends Activity {
     private String appendStringLog (){
         StringBuilder getAppend = new StringBuilder("?");
         getAppend.append("contactID=");
-       // getAppend.append();
+        getAppend.append(forLog);
         getAppend.append("&");
         getAppend.append("employeeID=");
         getAppend.append(passedEmpID);

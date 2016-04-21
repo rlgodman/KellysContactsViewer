@@ -3,6 +3,7 @@ package com.example.tim.kellyscontacts;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class LogActivity extends Activity {
         setContentView(R.layout.log_activity);
         //assign GUI elements to objects
         displayText = (TextView) findViewById(R.id.logView);
+        //make text view scrollable so all LOGS can be seen
+        displayText.setMovementMethod(new ScrollingMovementMethod());
         //fix passed ID as arrays start a 0
         passedID = getIntent().getStringExtra("id");
         int placeholder = Integer.parseInt(passedID);

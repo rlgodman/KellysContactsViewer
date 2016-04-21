@@ -91,10 +91,9 @@ public class EditContactActivity extends Activity{
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        String logString = "";
         //add LOG to contactlog table
             try {
-                logString = new logToDB().execute().get();
+               String logString = new logToDB().execute().get();
             } catch (InterruptedException e) {
                 Toast.makeText(EditContactActivity.this, "No Connection, check database status", Toast.LENGTH_SHORT);
                 e.printStackTrace();
