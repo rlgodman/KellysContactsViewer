@@ -77,11 +77,10 @@ public class MainActivity extends Activity {
         addNew = (Button) findViewById(R.id.btnGet);
         searchBar =(EditText) findViewById(R.id.searchBar);
         //get passedEmpID from LoginActivity
-        //gets passed boolean from all Activities which can access MainActivity and only asks for EmpID if bookean is True
+        //gets passed boolean from all Activities which can access MainActivity and only asks for EmpID if boolean is True
         Boolean firstLogin = getIntent().getBooleanExtra("First", false);
         if (firstLogin == true){
             passedEmpID = getIntent().getStringExtra("empID");
-            Log.d("passed empID=", passedEmpID);
         }
 
         //open addcontactactivity on button press
@@ -144,7 +143,6 @@ public class MainActivity extends Activity {
                 //create jsonobject from retrieveDetails returned string
                 try{
                     JSONObject contact = new JSONObject(getDetailsString);
-                    Log.d("jsonObj", contact.toString());
                     uid = contact.getString("id");
 
                 } catch (JSONException e){
@@ -238,10 +236,11 @@ public class MainActivity extends Activity {
         } catch (Exception e){
             e.printStackTrace();
         }
-        //Initialise variables to pass
+        //Initialise variables to pass - set as 0 or error to display if error occurs in the script call
         String email = "error";
         String mobile = "0";
         String home = "0";
+        //cannot be zero, therefore set to a number it will never be
         int logID = 88888;
         //create jsonobject from retrieveDetails returned string
         try{
@@ -294,7 +293,6 @@ public class MainActivity extends Activity {
         //set up Mobile Number in correct format
         String phone = "tel:"+mobile;
 
-        Log.d("PASSED Mobile", phone);
         //create callIntent which opens Dialer
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         //sets dialer to already have phone variable input
@@ -310,7 +308,6 @@ public class MainActivity extends Activity {
         //set up Hom Number in correct format
         String phone = "tel:"+home;
 
-        Log.d("PASSED Home", phone);
         //create callIntent which opens Dialer
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         //sets dialer to already have phone variable input
@@ -342,7 +339,6 @@ public class MainActivity extends Activity {
         if (forLog != 88888){
             createLogEntry();
         }
-        Log.d("PASSED Mobile", mobile);
         //create SMSintent and fill to field with phone variable
         Intent SMSIntent = new Intent(Intent.ACTION_SENDTO);
         SMSIntent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -489,7 +485,6 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("some tag", result);
 
         }
     }
@@ -550,8 +545,6 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("some tag", result);
-
         }
     }
     //creates GET string for Log
@@ -602,7 +595,6 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute (String result){
             super.onPostExecute(result);
-            Log.d("Returned message Log:", result);
         }
     }
 }

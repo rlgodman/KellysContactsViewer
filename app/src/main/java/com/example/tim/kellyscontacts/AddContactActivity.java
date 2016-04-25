@@ -34,13 +34,13 @@ public class AddContactActivity extends Activity{
     public EditText homeIn;
     public EditText addressIn;
     public Button addContact;
-    private String jsonLine;
+    private String jsonString;
     String name;
     String email;
     String mobile;
     String home;
     String address;
-    String jsonString;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -86,6 +86,7 @@ public class AddContactActivity extends Activity{
             }
         });
     }
+    //creates a string which is parseable by the PHP script via encoding in UTF-8
     private String appendString (){
         //string builder to create string to append to end of web address for GET
         StringBuilder getAppend = new StringBuilder("?");
@@ -169,7 +170,7 @@ public class AddContactActivity extends Activity{
                 e.printStackTrace();
             }
             //convert StringBuffer to String for return
-            jsonLine = sb.toString();
+            String jsonLine = sb.toString();
             return jsonLine;
         }
 
@@ -177,20 +178,20 @@ public class AddContactActivity extends Activity{
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("some tag", result);
+
             Context context = getApplicationContext();
             CharSequence popup = "";
             //check if result is success or failure to determine pop up
+            //show pop up of whether contact creation was successful or not
             if(result.equalsIgnoreCase("{\"success\":0, \"message\":\"required field is missing\"}")|| result.equalsIgnoreCase("{\"success\":0, \"message\":\"an error occurred\"}")){
                 popup= "Contact could not be created";
             } else {
                 popup= "Contact Successfully Created";
             }
-            //show pop up of whether contact creation was successful or not
-            //create and execute intent, return to mainActivity
             int duration = Toast.LENGTH_SHORT;
             Toast toast =Toast.makeText(context, popup, duration);
             toast.show();
+            //create and execute intent, return to mainActivity
             Intent mainAct = new Intent(AddContactActivity.this, MainActivity.class);
             mainAct.putExtra("First", false);
             startActivity(mainAct);

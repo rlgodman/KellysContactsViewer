@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
     private String toReturn;
     private JSONArray employeesJA;
 
-    //override onCreate method
+    //override onCreate method from Activity superclass
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +86,7 @@ public class LoginActivity extends Activity {
                     e.printStackTrace();
                 }
                 try {
-                    //store each pair in JSONArray
+                    //store each pair of passwords/usernames in JSONArray
                     employeesJA = new JSONArray(checkString);
                     for (int i = 0; i < employeesJA.length(); i++) {
                         //split JSONArray into JSONObjects
@@ -125,9 +125,7 @@ public class LoginActivity extends Activity {
                 //if no match was found
                 if (match == false) {
                     //create popup
-                    int duration = Toast.LENGTH_SHORT;
-                    Context context = getApplicationContext();
-                    Toast toast = Toast.makeText(context, "These details have never been registered or are incorrect, try again. Press New Account if you have never registered.", duration);
+                    Toast toast = Toast.makeText(getApplicationContext(), "These details have never been registered or are incorrect, try again. Press New Account if you have never registered.", Toast.LENGTH_SHORT);
                     toast.show();
                     match = true;
 
@@ -184,12 +182,8 @@ public class LoginActivity extends Activity {
                 for (int i = 0; i < employees.size(); i++) {
                     //check if TextFields values match any employees
                     if (submitName.equals(employees.get(i)) && submitPassword.equals(employees.get(i + 1))) {
-                        Log.d("all employees", employees.get(i));
-
                         //if details are matched, send popup
-                        int duration = Toast.LENGTH_SHORT;
-                        Context context = getApplicationContext();
-                        Toast toast = Toast.makeText(context, "These details have already been registered, press Log In instead!", duration);
+                        Toast toast = Toast.makeText(getApplicationContext(), "These details have already been registered, press Log In instead!", Toast.LENGTH_SHORT);
                         toast.show();
                         match = true;
                     }
@@ -197,9 +191,7 @@ public class LoginActivity extends Activity {
                     for (int j = 0; j < employees.size(); j += 2) {
                         if (submitName.equals(employees.get(j))) {
                             //if not unique, create and show popup
-                            int duration = Toast.LENGTH_SHORT;
-                            Context context = getApplicationContext();
-                            Toast toast = Toast.makeText(context, "This name has already been registered, press Log In instead or try another name", duration);
+                            Toast toast = Toast.makeText(getApplicationContext(), "This name has already been registered, press Log In instead or try another name", Toast.LENGTH_SHORT);
                             toast.show();
                             match = true;
                         }
@@ -217,10 +209,8 @@ public class LoginActivity extends Activity {
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     }
-                    //create intent to open MainActivity
-                    int duration = Toast.LENGTH_SHORT;
-                    Context context = getApplicationContext();
-                    Toast toast = Toast.makeText(context, "Loading Contacts...", duration);
+                    //create intent to open MainActivity and create + show popup
+                    Toast toast = Toast.makeText(getApplicationContext(), "Loading Contacts...", Toast.LENGTH_SHORT);
                     toast.show();
                     Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -267,7 +257,6 @@ public class LoginActivity extends Activity {
         protected String doInBackground(Void... params) {
             String toReturn;
             String toAppend = appendString();
-            Log.d("GET STRING", toAppend);
             String strURL = "http://31.51.178.61:8080/KellysDB/create_employee.php" + toAppend;
             URL url;
             StringBuffer sb = new StringBuffer();
@@ -300,7 +289,6 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.d("Returned message:", result);
         }
     }
 
@@ -343,10 +331,7 @@ public class LoginActivity extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            super.onPostExecute(result); //Log.d("All Employees:", result);
-            int duration = Toast.LENGTH_SHORT;
-            Context context = getApplicationContext();
-            Toast toast = Toast.makeText(context, "Employees Loaded", duration); //toast.show();
+            super.onPostExecute(result);
         }
     }
 

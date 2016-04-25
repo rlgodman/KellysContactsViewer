@@ -28,7 +28,6 @@ public class LogActivity extends Activity {
     public TextView displayText;
     private String jsonLine;
     String passedID;
-    String passedIDFix;
     String passedEmpID;
     //Override onCreate method
     @Override
@@ -42,11 +41,8 @@ public class LogActivity extends Activity {
         displayText.setMovementMethod(new ScrollingMovementMethod());
         //fix passed ID as arrays start a 0
         passedID = getIntent().getStringExtra("id");
-        int placeholder = Integer.parseInt(passedID);
-       // placeholder++;
-        passedIDFix= Integer.toString(placeholder);
         passedEmpID = getIntent().getStringExtra("empID");
-        Log.d("passed ID FIX", passedIDFix);
+
        //get contact details via retrievetask and store in jsonString
         String jsonString = "";
         try {
@@ -103,7 +99,7 @@ public class LogActivity extends Activity {
         protected String doInBackground(Void... params){
 
             //The url of the script to access with HTTP GET appended
-            String strURL = "http://31.51.178.61:8080/KellysDB/get_contact_details.php?id="+passedIDFix;
+            String strURL = "http://31.51.178.61:8080/KellysDB/get_contact_details.php?id="+passedID;
             URL url;
             StringBuffer sb = new StringBuffer();
             try{
@@ -136,7 +132,6 @@ public class LogActivity extends Activity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("contact details:", result);
 
         }
     }
@@ -147,7 +142,7 @@ public class LogActivity extends Activity {
         protected String doInBackground(Void... params){
 
             //url of php script with HTTP GET appended
-            String strURL = "http://31.51.178.61:8080/KellysDB/get_all_logs.php?contactID="+passedIDFix;
+            String strURL = "http://31.51.178.61:8080/KellysDB/get_all_logs.php?contactID="+passedID;
             URL url;
             StringBuffer sb = new StringBuffer();
             try{
@@ -185,7 +180,6 @@ public class LogActivity extends Activity {
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("log details:", result);
 
         }
     }

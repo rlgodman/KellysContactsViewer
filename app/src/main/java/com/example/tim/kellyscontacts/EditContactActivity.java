@@ -56,7 +56,7 @@ public class EditContactActivity extends Activity{
     String passedName;
     String passedID;
     String passedEmpID;
-    //override onCreate method
+    //override onCreate method from Activity superclass
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -81,7 +81,7 @@ public class EditContactActivity extends Activity{
         //employee ID
         passedEmpID = getIntent().getStringExtra("empID");
 
-        String jsonString = jsonLine;
+        String jsonString = "";
         //intialise modified retrieve task to get json of specific contact
         try {
             jsonString = new RetrieveTask().execute().get();
@@ -268,7 +268,7 @@ public class EditContactActivity extends Activity{
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("some tag", result);
+
 
         }
     }
@@ -318,12 +318,8 @@ public class EditContactActivity extends Activity{
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("Update tag", result);
-            int duration = Toast.LENGTH_SHORT;
-            Context context = getApplicationContext();
+
             String bread = "";
-            //TODO fix this
-            //check if contact wsa successful and determine popup content
 
             if (result.contains("1")){
                 bread = "Contact Updated";
@@ -331,7 +327,7 @@ public class EditContactActivity extends Activity{
                 bread = "Contact could not be updated";
             }
             //create popup and create intent to return to MainActivity
-            Toast toast = Toast.makeText(context, bread, duration);
+            Toast toast = Toast.makeText(getApplicationContext(), bread, Toast.LENGTH_SHORT);
             toast.show();
             Intent mainAct = new Intent(EditContactActivity.this, MainActivity.class);
             mainAct.putExtra("First", false);
@@ -382,9 +378,7 @@ public class EditContactActivity extends Activity{
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-            Log.d("some tag", result);
-            int duration = Toast.LENGTH_SHORT;
-            Context context = getApplicationContext();
+
             String bread = "";
             //determine popup text from JSON return
             if ((result.contains("1"))){
@@ -394,7 +388,7 @@ public class EditContactActivity extends Activity{
                 bread= "Contact could not be deleted";
             }
             //create popup and Intent to return to MainActivity
-            Toast toast = Toast.makeText(context, bread, duration);
+            Toast toast = Toast.makeText(getApplicationContext(), bread, Toast.LENGTH_SHORT);
             toast.show();
             Intent mainAct = new Intent(EditContactActivity.this, MainActivity.class);
             mainAct.putExtra("First", false);
@@ -450,7 +444,6 @@ public class EditContactActivity extends Activity{
         @Override
         protected void onPostExecute (String result){
             super.onPostExecute(result);
-            Log.d("Returned message Log:", result);
         }
     }
 }
