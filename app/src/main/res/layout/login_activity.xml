@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_gravity="center"
     android:gravity="center"
     >
+    <!-- Create Enter Name element and set properties-->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

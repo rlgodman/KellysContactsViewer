@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
+<!--Create Add Contact button element and set properties -->
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:layout_below="@+id/addressIn"
         android:layout_alignParentStart="true"
         android:layout_marginTop="5dp" />
-
+<!--Create Contact Name text box element and set properties-->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="5dp" />
-
+    <!--Create Contact Email Address text box element and set properties-->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="5dp" />
-
+    <!--Create Contact Mobile Phone text box element and set properties-->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="5dp" />
-
+    <!--Create Contact HomePhone text box element and set properties-->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="5dp" />
-
+    <!--Create Contact Address text box element and set properties-->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

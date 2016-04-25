@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <!-- Create Contact Name label element and set properties-->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -9,14 +10,14 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:textSize="17dip" />
-    <!-- input name -->
+    <!-- Create input name  element and set properties-->
     <EditText android:id="@+id/inputName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:singleLine="false"
         />
-    <!-- email label -->
+    <!-- Create email label element and set properties -->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -25,14 +26,14 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:textSize="17dip" />
-    <!-- input email -->
+    <!--Create input email element and set properties -->
     <EditText android:id="@+id/inputEmail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:singleLine="false"
         />
-    <!-- mobile label -->
+    <!--Create mobile label element and set properties-->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -41,14 +42,14 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:textSize="17dip" />
-    <!-- input name -->
+    <!-- Create input mobile element and set properties -->
     <EditText android:id="@+id/inputMobile"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:singleLine="false"
         />
-    <!-- home label -->
+    <!--Create home label element and set properties-->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -57,14 +58,14 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:textSize="17dip" />
-    <!-- input home -->
+    <!--Create input home label and set properties -->
     <EditText android:id="@+id/inputHome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:singleLine="false"
         />
-    <!-- Address Label -->
+    <!--Create Address Label element and set properties -->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -73,20 +74,21 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:textSize="17dip" />
-    <!-- input address -->
+    <!--Create input address element and set properties -->
     <EditText android:id="@+id/inputAddress"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:singleLine="false"
         />
-    <!-- Button save contact-->
+    <!--Create Save Button element and set properties-->
     <Button android:id="@+id/btnSave"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Save Changes"
         android:layout_weight="1"
         />
+    <!--Create Delete Button  element and set properties-->
     <Button android:id="@+id/btnDelete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
